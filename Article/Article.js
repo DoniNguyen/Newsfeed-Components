@@ -85,6 +85,18 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Casting spells in real life',
+    date: 'October 30, 2019',
+    firstParagraph: `Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии для предварительного просмотра макета и визуальных макетах.Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии для предварительного просмотра макета и визуальных макетах.Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии для предварительного просмотра макета и визуальных макетах.`,
+
+    secondParagraph: `Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии для предварительного просмотра макета и визуальных макетах.Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии для предварительного просмотра макета и визуальных макетах.Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии для предварительного просмотра макета и визуальных макетах.`,
+
+    thirdParagraph: `Toad-like smile Flourish and Blotts he knew I’d come back Quidditch World Cup. Fat Lady baubles banana fritters fairy lights 
+        Petrificus Totalus. So thirsty, deluminator firs’ years follow me 12 inches of parchment. Head Boy start-of-term banquet Cleansweep Seven 
+        roaring lion hat. Unicorn blood crossbow mars is bright tonight, feast Norwegian Ridgeback. Come seek us where our voices sound, we cannot 
+        sing above the ground, Ginny Weasley bright red. Fanged frisbees, phoenix tears good clean match.`
   }
 ];
 
@@ -112,3 +124,45 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+const articles = document.querySelector(".articles")
+
+data.forEach(og =>{
+  articles.appendChild(createArticle(og.title, og.date, og.firstParagraph, og.secondParagraph, og.thirdParagraph))
+});
+
+function createArticle(title, date, firstParagraph, secondParagraph, thirdParagraph){
+  const aArticle = document.createElement('div');
+  const aTitle = document.createElement('h2');
+  const aDate = document.createElement('p');
+  const pGraphOne = document.createElement('p');
+  const pGraphTwo = document.createElement('p');
+  const pGraphThree = document.createElement('p');
+  const btn = document.createElement('span');
+
+  aArticle.appendChild(aTitle);
+  aArticle.appendChild(aDate);
+  aArticle.appendChild(pGraphOne);
+  aArticle.appendChild(pGraphTwo);
+  aArticle.appendChild(pGraphThree);
+  aArticle.appendChild(btn);
+  
+  
+  aArticle.classList.add('article', 'article-open');
+  aTitle.classList.add('title');
+  aDate.classList.add('date');
+  pGraphOne.classList.add('paragraph');
+  pGraphTwo.classList.add('paragraph');
+  pGraphThree.classList.add('paragraph');
+  btn.classList.add('expandButton', 'close');
+
+  aTitle.textContent = title;
+  aDate.textContent = date;
+  pGraphOne.textContent = firstParagraph;
+  pGraphTwo.textContent = secondParagraph;
+  pGraphThree.textContent = thirdParagraph;
+
+  btn.addEventListener('click', ()=>{
+    aArticle.classList.toggle('article-open');
+  });
+  return aArticle;
+};
